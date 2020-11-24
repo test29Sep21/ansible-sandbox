@@ -5,13 +5,11 @@
 
 - hosts: all
   become: true 
-  vars:
-    target: /buildtools/setversion/setversion.sh
   tasks:
   - name: copy sh file
     copy:
       src: /Users/afedotov/Work_local/jira-utils/setversion/setversion.sh
-      dest: {{ files_folder }}
+      dest: /buildtools/setversion/setversion.sh
       owner: builder
       group: builder
-      mode: a+x
+      mode: 0775
