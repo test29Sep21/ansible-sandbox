@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: true 
+  tasks:
+  - name: copy sh file
+    copy:
+      src: /Users/afedotov/Work_local/jira-utils/setversion/setversion.sh
+      dest: /buildtools/setversion/setversion.sh
+      owner: builder
+      group: builder
