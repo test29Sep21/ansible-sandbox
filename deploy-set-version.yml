@@ -1,10 +1,17 @@
----
+##############################
+#Deploying set-version .sh to agents
+#Usage: ansible-playbook -u tooladm -i hosts --ask-pass deploy-set-version.yml
+##############################
+
 - hosts: all
   become: true 
+  vars:
+    target: /buildtools/setversion/setversion.sh
   tasks:
   - name: copy sh file
     copy:
       src: /Users/afedotov/Work_local/jira-utils/setversion/setversion.sh
-      dest: /buildtools/setversion/setversion.sh
+      dest: {{ files_folder }}
       owner: builder
       group: builder
+      mode: a+x
