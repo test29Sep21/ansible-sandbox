@@ -1,11 +1,13 @@
 ##############################
 #Deploying set-version .sh to agents
-#Usage: ansible-playbook -u tooladm -i set_version_hosts --ask-pass deploy-set-version.yml
+#Usage: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u tooladm -i set_version_hosts --ask-pass deploy-set-version.yml
 ##############################
 
 - hosts: all
   become: true 
   tasks:
+  - name: rename file to backup
+    command: mv /buildtools/setversion/setversion.sh /buildtools/setversion/setversion.sh_backup
   - name: copy sh file
     copy:
       src: /Users/afedotov/Work_local/jira-utils/setversion/setversion.sh
